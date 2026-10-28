@@ -35988,22 +35988,19 @@ const oT = `
     .stage { position: absolute; inset: 0; }
     .loader {
       position: absolute; inset: 0; display: grid; place-items: center;
-      font: 500 12px/1.4 ui-sans-serif, system-ui, sans-serif;
-      letter-spacing: .14em; text-transform: uppercase;
-      color: rgba(46, 41, 36, .52); pointer-events: none;
+      font: 400 12px/1.4 ui-sans-serif, system-ui, -apple-system, sans-serif;
+      color: rgba(29, 29, 31, .42); pointer-events: none;
       transition: opacity .4s ease;
     }
     .loader[data-ready="true"] { opacity: 0; }
     .loader-dot {
-      width: 7px; height: 7px; margin-right: 9px; border-radius: 50%;
-      background: #2f7d62; display: inline-block;
-      box-shadow: 0 0 0 0 rgba(47,125,98,.45);
-      animation: pulse 1.4s ease-out infinite;
+      width: 6px; height: 6px; margin-right: 8px; border-radius: 50%;
+      background: #1d1d1f; display: inline-block; opacity: .35;
+      animation: pulse 1.4s ease-in-out infinite;
     }
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(47,125,98,.4); }
-      70% { box-shadow: 0 0 0 9px rgba(47,125,98,0); }
-      100% { box-shadow: 0 0 0 0 rgba(47,125,98,0); }
+      0%, 100% { opacity: .2; }
+      50% { opacity: .55; }
     }
     .error {
       position: absolute; inset: 0; display: none; place-items: center;
@@ -36016,7 +36013,7 @@ const oT = `
     .waifu-canvas:active { cursor: grabbing; }
   </style>
   <div class="stage" part="stage"></div>
-  <div class="loader" part="loader"><span><span class="loader-dot"></span>karakter yükleniyor</span></div>
+  <div class="loader" part="loader"><span><span class="loader-dot"></span>Yükleniyor</span></div>
   <div class="error" part="error"></div>
 `;
 class Wf extends HTMLElement {

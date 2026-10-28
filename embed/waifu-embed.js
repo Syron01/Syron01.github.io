@@ -5165,22 +5165,19 @@ void main() {
     .stage { position: absolute; inset: 0; }
     .loader {
       position: absolute; inset: 0; display: grid; place-items: center;
-      font: 500 12px/1.4 ui-sans-serif, system-ui, sans-serif;
-      letter-spacing: .14em; text-transform: uppercase;
-      color: rgba(46, 41, 36, .52); pointer-events: none;
+      font: 400 12px/1.4 ui-sans-serif, system-ui, -apple-system, sans-serif;
+      color: rgba(29, 29, 31, .42); pointer-events: none;
       transition: opacity .4s ease;
     }
     .loader[data-ready="true"] { opacity: 0; }
     .loader-dot {
-      width: 7px; height: 7px; margin-right: 9px; border-radius: 50%;
-      background: #2f7d62; display: inline-block;
-      box-shadow: 0 0 0 0 rgba(47,125,98,.45);
-      animation: pulse 1.4s ease-out infinite;
+      width: 6px; height: 6px; margin-right: 8px; border-radius: 50%;
+      background: #1d1d1f; display: inline-block; opacity: .35;
+      animation: pulse 1.4s ease-in-out infinite;
     }
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(47,125,98,.4); }
-      70% { box-shadow: 0 0 0 9px rgba(47,125,98,0); }
-      100% { box-shadow: 0 0 0 0 rgba(47,125,98,0); }
+      0%, 100% { opacity: .2; }
+      50% { opacity: .55; }
     }
     .error {
       position: absolute; inset: 0; display: none; place-items: center;
@@ -5193,6 +5190,6 @@ void main() {
     .waifu-canvas:active { cursor: grabbing; }
   </style>
   <div class="stage" part="stage"></div>
-  <div class="loader" part="loader"><span><span class="loader-dot"></span>karakter yükleniyor</span></div>
+  <div class="loader" part="loader"><span><span class="loader-dot"></span>Yükleniyor</span></div>
   <div class="error" part="error"></div>
 `;class zc extends HTMLElement{static observedAttributes=["preset","character","model","quality","interactive","background","asset-base"];stage=null;loader=null;error=null;engine=null;connectedCallback(){if(!this.shadowRoot){const e=this.attachShadow({mode:"open"});e.innerHTML=wS,this.stage=e.querySelector(".stage"),this.loader=e.querySelector(".loader"),this.error=e.querySelector(".error")}this.mount()}disconnectedCallback(){this.engine?.dispose(),this.engine=null}attributeChangedCallback(e){if(this.engine)if(e==="preset"||e==="character")this.engine.setCharacter(this.resolveConfig());else if(e==="model"){const t=this.getAttribute("model");t&&this.engine.setModel(t)}else e==="asset-base"||(e==="quality"?this.engine.setQuality(this.resolveQuality()):e==="interactive"&&this.engine.setInteractive(this.getAttribute("interactive")!=="false"))}resolveConfig(){const e=this.getAttribute("character");if(e){const n=Np(e);if(n)return n}const t=this.getAttribute("preset");return Ni(t?So(t).config:{})}resolveQuality(){const e=this.getAttribute("quality");return e==="high"||e==="lite"||e==="auto"?e:"auto"}mount(){if(!this.stage||this.engine)return;const e=this.resolveConfig(),t=this.getAttribute("model")??Jr[e.look].modelUrl,n=this.getAttribute("background");this.engine=new Vc({container:this.stage,modelUrl:t,assetBase:this.getAttribute("asset-base")??void 0,character:e,quality:this.resolveQuality(),interactive:this.getAttribute("interactive")!=="false",background:n==="dark"||n==="studio"||n==="light"?n:"transparent",showShadow:this.getAttribute("shadow")!=="false",onProgress:r=>{if(this.loader){this.loader.dataset.ready=String(r>=1);const s=this.loader.querySelector("span");s&&r<1&&(s.lastChild.textContent=` karakter yükleniyor ${Math.round(r*100)}%`)}}});for(const r of["ready","loadprogress","statechange","emotionchange","speechstart","speechend","viseme","poke","dragend","error","contextlost","contextrestored"])this.engine.addEventListener(r,s=>{r==="ready"&&this.loader&&(this.loader.dataset.ready="true"),this.dispatchEvent(new CustomEvent(r,{detail:s.detail}))});this.engine.addEventListener("error",r=>{if(!this.error)return;const s=r.detail;this.error.textContent=s?.error?.message??"Karakter yüklenemedi.",this.error.dataset.visible="true",this.loader&&(this.loader.dataset.ready="true")})}say(e,t={}){this.engine?.say(e,t)}setEmotion(e){this.engine?.setEmotion(e)}play(e){this.engine?.play(e)}applyPreset(e){const t=So(e),n=Ni(t.config);this.removeAttribute("character"),this.setAttribute("preset",e),this.engine?.setCharacter(n)}setLook(e){this.engine?.setCharacter({look:e,gender:Jr[e]?.gender??"female"}),this.engine&&this.setAttribute("character",To(this.engine.getCharacter()))}setAppearance(e){this.engine&&(this.engine.setCharacter(e),this.setAttribute("character",To(this.engine.getCharacter())))}lookAt(e,t){this.engine?.lookAt(e,t)}capture(e,t){return this.engine?.capture(e,t)??""}getEngine(){return this.engine}}customElements.get("waifu-stage")||customElements.define("waifu-stage",zc);function Hc(i,e={}){const t=typeof i=="string"?document.querySelector(i):i;if(!t)throw new Error(`WaifuEngine: hedef bulunamadı (${String(i)})`);const n=document.createElement("waifu-stage"),r={};e.preset&&(r.preset=e.preset),e.character&&(r.character=e.character),e.model&&(r.model=e.model),e.quality&&(r.quality=e.quality),e.interactive===!1&&(r.interactive="false"),e.background&&(r.background=e.background),e.shadow===!1&&(r.shadow="false");for(const[s,a]of Object.entries(r))n.setAttribute(s,a);return n.style.width="100%",n.style.height="100%",t.appendChild(n),n}function Of(){document.querySelectorAll("[data-waifu]").forEach(i=>{if(i.tagName.toLowerCase()==="waifu-stage"||i.querySelector("waifu-stage"))return;const e={};for(const[t,n]of Object.entries(i.dataset))t!=="waifu"&&(t==="preset"&&(e.preset=n),t==="character"&&(e.character=n),t==="model"&&(e.model=n),t==="quality"&&(e.quality=n),t==="interactive"&&(e.interactive=n!=="false"),t==="background"&&(e.background=n),t==="shadow"&&(e.shadow=n!=="false"));Hc(i,e)})}return document.readyState==="loading"?document.addEventListener("DOMContentLoaded",Of,{once:!0}):Of(),window.WaifuEngine={WaifuStage:zc,WaifuEngine:Vc,mount:Hc,presets:Kr},Zn.PRESETS=Kr,Zn.WaifuEngine=Vc,Zn.WaifuStage=zc,Zn.encodeConfig=To,Zn.mount=Hc,Zn.normalizeCharacter=Ni,Zn.randomCharacter=Ip,Object.defineProperty(Zn,Symbol.toStringTag,{value:"Module"}),Zn})({});

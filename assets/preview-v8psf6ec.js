@@ -1,0 +1,1 @@
+import{e as r,n as s,p as c}from"./WaifuStage-DTNFqDE3.js";const a=document.getElementById("waifu"),o=new URLSearchParams(location.search),e=o.get("model");e&&a.setAttribute("model",e);const t=o.get("preset");a.setAttribute("character",r(s(t?c(t).config:{})));
