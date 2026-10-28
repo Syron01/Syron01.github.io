@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#f5f5f7" />
     <meta name="description" content="WaifuEngine entegrasyon dokümantasyonu — tek etiket, VRM modelleri, olaylar ve API." />
     <title>Docs — WaifuEngine</title>
-    <link rel="stylesheet" crossorigin href="/assets/app-B84f6Sb8.css">
+    <link rel="stylesheet" crossorigin href="/assets/app-Dy0RgPxi.css">
   </head>
   <body class="docs-page min-h-dvh bg-background text-foreground antialiased">
     <header class="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
@@ -73,8 +73,9 @@
                 <tr><td class="px-4 py-3 font-mono text-[12px]">model</td><td class="px-4 py-3 text-muted-foreground">özel VRM dosyası yolu</td></tr>
                 <tr><td class="px-4 py-3 font-mono text-[12px]">asset-base</td><td class="px-4 py-3 text-muted-foreground">model dosyalarının kök adresi</td></tr>
                 <tr><td class="px-4 py-3 font-mono text-[12px]">quality</td><td class="px-4 py-3 text-muted-foreground">auto · high · lite</td></tr>
+                <tr><td class="px-4 py-3 font-mono text-[12px]">shader</td><td class="px-4 py-3 text-muted-foreground">on · off (anime parlaklık ve rim)</td></tr>
                 <tr><td class="px-4 py-3 font-mono text-[12px]">background</td><td class="px-4 py-3 text-muted-foreground">transparent · dark · studio · light</td></tr>
-                <tr><td class="px-4 py-3 font-mono text-[12px]">interactive</td><td class="px-4 py-3 text-muted-foreground">sürükleme, bakış ve yakınlaştırma</td></tr>
+                <tr><td class="px-4 py-3 font-mono text-[12px]">interactive</td><td class="px-4 py-3 text-muted-foreground">döndürme, Ctrl+sürükle taşıma, bakış, yakınlaştırma</td></tr>
               </tbody>
             </table>
           </div>
@@ -94,6 +95,8 @@ stage.addEventListener('ready', () => {
   engine.play('sit');
   engine.setEmotion('shy');
   engine.lookAt(0.6, -0.2);
+  engine.setShader(false);
+  engine.resetTransform();
   engine.setCharacter({ hair: { color: '#f0a6c8', length: 1.08 } });
 });</pre>
           <p class="mt-3 text-[12px] leading-relaxed text-muted-foreground">
