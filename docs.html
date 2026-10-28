@@ -2,16 +2,29 @@
 <html lang="tr">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%231d1d1f'/%3E%3Ctext x='32' y='43' font-family='system-ui' font-size='30' font-weight='600' fill='white' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#f5f5f7" />
     <meta name="description" content="WaifuEngine entegrasyon dokümantasyonu — tek etiket, VRM modelleri, olaylar ve API." />
-    <title>Docs — WaifuEngine</title>
-    <link rel="stylesheet" crossorigin href="/assets/app-Dy0RgPxi.css">
+    <title>Docs — WaifuEngine</title>
+    <script>
+      try {
+        var theme = localStorage.getItem('waifu.theme');
+        if (!theme) theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        if (theme === 'dark') document.documentElement.classList.add('dark');
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', theme === 'dark' ? '#101012' : '#f5f5f7');
+      } catch (error) {}
+    </script>
+    <script type="module" crossorigin src="/assets/docs-BZMBNIf9.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+    <link rel="modulepreload" crossorigin href="/assets/theme-B0A8eHzX.js">
+    <link rel="stylesheet" crossorigin href="/assets/theme-MHO6E56B.css">
   </head>
   <body class="docs-page min-h-dvh bg-background text-foreground antialiased">
     <header class="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
       <a href="/" class="flex items-center gap-2.5">
-        <span class="grid size-7 place-items-center rounded-full bg-[#1d1d1f] text-[12px] font-semibold text-white">W</span>
+        <span class="grid size-7 place-items-center rounded-full bg-primary text-[12px] font-semibold text-primary-foreground">W</span>
         <span class="text-[15px] font-semibold tracking-[-0.01em]">WaifuEngine</span>
       </a>
       <nav class="absolute left-1/2 hidden w-[252px] -translate-x-1/2 md:block">
@@ -21,17 +34,21 @@
           <button type="button" data-active="true">Docs</button>
         </div>
       </nav>
+      <button type="button" class="pill pill-secondary size-9" data-theme-toggle aria-label="Koyu tema">
+        <svg class="theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
+      </button>
     </header>
 
     <main class="mx-auto grid max-w-6xl gap-10 px-5 pb-16 pt-4 lg:grid-cols-[220px_minmax(0,1fr)]">
       <aside class="hidden lg:block">
         <nav class="sticky top-8 space-y-0.5 text-[13px] text-muted-foreground">
-          <a class="block rounded-full px-3 py-2 hover:bg-white hover:text-foreground" href="#hizli">Hızlı başlangıç</a>
-          <a class="block rounded-full px-3 py-2 hover:bg-white hover:text-foreground" href="#etiket">Tek etiket</a>
-          <a class="block rounded-full px-3 py-2 hover:bg-white hover:text-foreground" href="#api">JavaScript API</a>
-          <a class="block rounded-full px-3 py-2 hover:bg-white hover:text-foreground" href="#karakter">Karakter JSON'u</a>
-          <a class="block rounded-full px-3 py-2 hover:bg-white hover:text-foreground" href="#performans">Performans</a>
-          <a class="block rounded-full px-3 py-2 hover:bg-white hover:text-foreground" href="#lisans">Lisans</a>
+          <a class="block rounded-full px-3 py-2 hover:bg-card hover:text-foreground" href="#hizli">Hızlı başlangıç</a>
+          <a class="block rounded-full px-3 py-2 hover:bg-card hover:text-foreground" href="#etiket">Tek etiket</a>
+          <a class="block rounded-full px-3 py-2 hover:bg-card hover:text-foreground" href="#api">JavaScript API</a>
+          <a class="block rounded-full px-3 py-2 hover:bg-card hover:text-foreground" href="#karakter">Karakter JSON'u</a>
+          <a class="block rounded-full px-3 py-2 hover:bg-card hover:text-foreground" href="#performans">Performans</a>
+          <a class="block rounded-full px-3 py-2 hover:bg-card hover:text-foreground" href="#lisans">Lisans</a>
         </nav>
       </aside>
 
@@ -46,10 +63,10 @@
         <section id="hizli" class="mt-10 scroll-mt-20">
           <h2 class="text-[20px] font-semibold tracking-[-0.02em]">Hızlı başlangıç</h2>
           <p class="mt-2 text-[14px] leading-relaxed text-muted-foreground">
-            Script'i sayfaya ekleyin, ardından <code class="rounded-md bg-white px-1.5 py-0.5 text-[12px] text-foreground">&lt;waifu-stage&gt;</code>
+            Script'i sayfaya ekleyin, ardından <code class="rounded-md bg-card px-1.5 py-0.5 text-[12px] text-foreground">&lt;waifu-stage&gt;</code>
             etiketini yerleştirin. Model yolu verilmezse karakterin varsayılan VRM'i kullanılır.
           </p>
-          <pre class="mt-4 overflow-x-auto rounded-[20px] bg-[#efeff2] p-4 text-[11px] leading-relaxed text-[#4a4a4f]">&lt;script src="https://cdn.example.com/embed/waifu-embed.js" defer&gt;&lt;/script&gt;
+          <pre class="mt-4 overflow-x-auto rounded-[20px] bg-muted p-4 text-[11px] leading-relaxed text-muted-foreground">&lt;script src="https://cdn.example.com/embed/waifu-embed.js" defer&gt;&lt;/script&gt;
 
 &lt;waifu-stage
   preset="mia"
@@ -62,12 +79,12 @@
 
         <section id="etiket" class="mt-10 scroll-mt-20">
           <h2 class="text-[20px] font-semibold tracking-[-0.02em]">Tek etiket</h2>
-          <div class="mt-3 overflow-hidden rounded-[20px] bg-white">
+          <div class="mt-3 overflow-hidden rounded-[20px] bg-card">
             <table class="w-full text-left text-[13px]">
               <thead class="text-muted-foreground">
-                <tr class="border-b border-black/[0.06]"><th class="px-4 py-3 font-medium">Özellik</th><th class="px-4 py-3 font-medium">Değer</th></tr>
+                <tr class="border-b border-border"><th class="px-4 py-3 font-medium">Özellik</th><th class="px-4 py-3 font-medium">Değer</th></tr>
               </thead>
-              <tbody class="divide-y divide-black/[0.05]">
+              <tbody class="divide-y divide-border">
                 <tr><td class="px-4 py-3 font-mono text-[12px]">preset</td><td class="px-4 py-3 text-muted-foreground">40 karakterden biri (mia, ren, sora, kai…)</td></tr>
                 <tr><td class="px-4 py-3 font-mono text-[12px]">character</td><td class="px-4 py-3 text-muted-foreground">base64url kodlanmış tam karakter JSON'u</td></tr>
                 <tr><td class="px-4 py-3 font-mono text-[12px]">model</td><td class="px-4 py-3 text-muted-foreground">özel VRM dosyası yolu</td></tr>
@@ -84,10 +101,10 @@
         <section id="api" class="mt-10 scroll-mt-20">
           <h2 class="text-[20px] font-semibold tracking-[-0.02em]">JavaScript API</h2>
           <p class="mt-2 text-[14px] leading-relaxed text-muted-foreground">
-            Etiket hazır olduğunda <code class="rounded-md bg-white px-1.5 py-0.5 text-[12px] text-foreground">ready</code> olayı yayınlanır.
-            Motoru <code class="rounded-md bg-white px-1.5 py-0.5 text-[12px] text-foreground">getEngine()</code> ile alabilirsiniz.
+            Etiket hazır olduğunda <code class="rounded-md bg-card px-1.5 py-0.5 text-[12px] text-foreground">ready</code> olayı yayınlanır.
+            Motoru <code class="rounded-md bg-card px-1.5 py-0.5 text-[12px] text-foreground">getEngine()</code> ile alabilirsiniz.
           </p>
-          <pre class="mt-4 overflow-x-auto rounded-[20px] bg-[#efeff2] p-4 text-[11px] leading-relaxed text-[#4a4a4f]">const stage = document.querySelector('waifu-stage');
+          <pre class="mt-4 overflow-x-auto rounded-[20px] bg-muted p-4 text-[11px] leading-relaxed text-muted-foreground">const stage = document.querySelector('waifu-stage');
 stage.addEventListener('ready', () => {
   const engine = stage.getEngine();
 
@@ -110,7 +127,7 @@ stage.addEventListener('ready', () => {
             Cinsiyet, görünüm, vücut oranları, yüz, saç, kıyafet, ten tonu ve mizaç tek şemada tanımlanır.
             Studio'daki tüm değişiklikler anında uygulanır ve tarayıcıda saklanır.
           </p>
-          <pre class="mt-4 overflow-x-auto rounded-[20px] bg-[#efeff2] p-4 text-[11px] leading-relaxed text-[#4a4a4f]">{
+          <pre class="mt-4 overflow-x-auto rounded-[20px] bg-muted p-4 text-[11px] leading-relaxed text-muted-foreground">{
   "gender": "female",
   "look": "vita",
   "body": { "height": 1, "build": 0, "bust": 0.38, "hips": 0.42, "waist": 0.44, "shoulders": 0.5 },
@@ -143,11 +160,11 @@ stage.addEventListener('ready', () => {
           </p>
         </section>
 
-        <footer class="mt-12 flex items-center justify-between border-t border-black/[0.06] pt-6 text-[12px] text-muted-foreground">
+        <footer class="mt-12 flex items-center justify-between border-t border-border pt-6 text-[12px] text-muted-foreground">
           <span>WaifuEngine</span>
           <a class="hover:text-foreground" href="/">Demo</a>
         </footer>
       </div>
-    </main>
+    </main>
   </body>
 </html>

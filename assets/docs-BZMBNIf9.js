@@ -1,0 +1,1 @@
+import"./modulepreload-polyfill-B5Qt9EMX.js";import{t as o,c as r}from"./theme-B0A8eHzX.js";const t=document.querySelector("[data-theme-toggle]");function a(){const e=r()==="dark";t?.setAttribute("aria-label",e?"Aydınlık tema":"Koyu tema"),t?.setAttribute("title",e?"Aydınlık tema":"Koyu tema")}t?.addEventListener("click",()=>{o(),a()});a();
